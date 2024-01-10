@@ -6,17 +6,15 @@ import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [activities, setActivities] = useLocalStorageState("activities", {
-    defaultValue: [{ id: "123", name: "Read a book" }],
-  });
+  const [activities, setActivities] = useLocalStorageState("activities", []);
+
+  if (!activities) {
+    setActivities([]);
+  }
 
   function handleAddActivity(newActivity) {
     setActivities([...activities, { id: uid(), ...newActivity }]);
   }
-
-  // if (!activities) {
-  //   return null;
-  // }
 
   return (
     <div className="app">
