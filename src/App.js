@@ -1,10 +1,18 @@
 import "./App.css";
+import Form from "./components/Form";
+import { useState } from "react";
+import { uid } from "uid";
 
 function App() {
+  const [activities, setActivities] = useState([]);
+
+  function handleAddActivity(newActivity) {
+    setActivities([...activities, { id: uid(), ...newActivity }]);
+  }
+
   return (
     <div className="app">
-      <h1>WEATHER MASTER WELCOMES YOU TO THIS MAGNIFICANT APP</h1>
-      <p>by Netti and the Philipps (c)</p>
+      <Form onAddActivity={handleAddActivity} />
     </div>
   );
 }
