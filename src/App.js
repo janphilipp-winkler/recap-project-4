@@ -5,7 +5,7 @@ import List from "./components/List";
 import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
 
-function App() {
+function App() 
   const [activities, setActivities] = useLocalStorageState("activities", []);
 
   if (!activities) {
@@ -16,9 +16,13 @@ function App() {
     setActivities([...activities, { id: uid(), ...newActivity }]);
   }
 
+  const filteredActivities = activities.filter(
+    (activity) => activity.isForGoodWeather === isGoodWeather
+  );
+
   return (
     <div className="app">
-      <List activities={activities} />
+      <List activities={filteredActivities} isGoodWeather={isGoodWeather} />
       <Form onAddActivity={handleAddActivity} />
     </div>
   );
