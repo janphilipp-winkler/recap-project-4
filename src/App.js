@@ -7,9 +7,11 @@ import useLocalStorageState from "use-local-storage-state";
 
 function App() {
   const isGoodWeather = true;
-  const [activities, setActivities] = useLocalStorageState("activities", {
-    defaultValue: [{ id: "123", name: "Read a book" }],
-  });
+  const [activities, setActivities] = useLocalStorageState("activities", []);
+
+  if (!activities) {
+    setActivities([]);
+  }
 
   function handleAddActivity(newActivity) {
     setActivities([...activities, { id: uid(), ...newActivity }]);
