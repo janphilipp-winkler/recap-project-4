@@ -32,6 +32,10 @@ function App() {
     fetchWeather();
   }, []);
 
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
+
   function handleAddActivity(newActivity) {
     setActivities([...activities, { id: uid(), ...newActivity }]);
   }
@@ -50,6 +54,7 @@ function App() {
         </h1>
       )}
       <List
+        onDeleteActivity={handleDeleteActivity}
         activities={filteredActivities}
         isGoodWeather={weather?.isGoodWeather}
       />

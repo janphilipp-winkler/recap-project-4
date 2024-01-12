@@ -1,5 +1,5 @@
 .app {
-  max-width: 36rem;
+  max-width: 22rem;
   padding: 2rem 1rem;
 }
 
@@ -18,4 +18,10 @@ button {
   border: none;
   padding: 0.75rem;
   border-radius: 6px;
+}
+
+@media screen and (min-width: 22rem) {
+  .app {
+    min-width: 22rem;
+  }
 }
