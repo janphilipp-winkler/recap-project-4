@@ -30,6 +30,13 @@ function App() {
       }
     };
     fetchWeather();
+    const timer = setInterval(() => {
+      fetchWeather();
+    }, 5000);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   function handleDeleteActivity(id) {
