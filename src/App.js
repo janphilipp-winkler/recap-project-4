@@ -5,12 +5,11 @@ import List from "./components/List";
 import { uid } from "uid";
 import useLocalStorageState from "use-local-storage-state";
 
-function App() 
-  const [activities, setActivities] = useLocalStorageState("activities", []);
-
-  if (!activities) {
-    setActivities([]);
-  }
+function App() {
+  const isGoodWeather = true;
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [{ id: "123", name: "Read a book" }],
+  });
 
   function handleAddActivity(newActivity) {
     setActivities([...activities, { id: uid(), ...newActivity }]);
