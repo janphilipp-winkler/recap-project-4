@@ -3,6 +3,15 @@
   padding: 2rem 1rem;
 }
 
+.app h1,
+.app h2 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
 button {
   color: white;
   background-color: rgb(11, 11, 11);
