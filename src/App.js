@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
+import { uid } from "uid";
+import useLocalStorageState from "use-local-storage-state";
 import "./App.css";
 import Form from "./components/Form";
 import List from "./components/List";
-import { uid } from "uid";
-import useLocalStorageState from "use-local-storage-state";
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -54,10 +54,11 @@ function App() {
   return (
     <div className="app">
       {weather === null ? (
-        <h2>loading weather...</h2>
+        <h2 className="align-center">loading weather...</h2>
       ) : (
-        <h1>
-          <span>{weather.condition}</span> <span>{weather.temperature}</span>
+        <h1 className="app__heading align-center">
+          <span className="app__heading-emoji">{weather.condition}</span>
+          <span>{weather.temperature}°C</span>
         </h1>
       )}
       <List
