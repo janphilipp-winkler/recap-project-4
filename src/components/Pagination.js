@@ -12,7 +12,7 @@ export default function Pagination({
         className={`pagination__button ${currentPage === 1 ? "hidden" : ""}`}
         onClick={onPrevPage}
       >
-        -
+        &laquo;
       </button>
       <span className="pagination__count">
         {currentPage}/{totalPages}
@@ -23,7 +23,7 @@ export default function Pagination({
         }`}
         onClick={onNextPage}
       >
-        +
+        &raquo;
       </button>
     </div>
   );

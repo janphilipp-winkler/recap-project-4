@@ -37,3 +37,7 @@
 .list__item-button:hover {
   color: var(--red);
 }
+
+.highlight {
+  outline: 2px solid var(--red);
+}

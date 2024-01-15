@@ -12,6 +12,7 @@ function App() {
   const [checkbox, setCheckbox] = useLocalStorageState("checkbox", false);
   const [currentPage, setCurrentPage] = useState(1);
   const activitiesPerPage = 10;
+  const totalPages = Math.ceil(activities.length / activitiesPerPage);
 
   const indexOfLastActivity = currentPage * activitiesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
@@ -85,19 +86,23 @@ function App() {
         onDeleteActivity={handleDeleteActivity}
         activities={currentActivities}
         isGoodWeather={weather?.isGoodWeather}
+        currentPage={currentPage}
+        totalPages={totalPages}
       />
       {activities.length > activitiesPerPage && (
         <Pagination
           currentPage={currentPage}
           onNextPage={nextPage}
           onPrevPage={prevPage}
-          totalPages={Math.ceil(activities.length / activitiesPerPage)}
+          totalPages={totalPages}
         />
       )}
       <Form
         onAddActivity={handleAddActivity}
         checkbox={checkbox}
         setCheckbox={setCheckbox}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );

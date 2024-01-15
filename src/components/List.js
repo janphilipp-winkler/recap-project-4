@@ -1,6 +1,27 @@
 import "./List.css";
+import { useEffect, useState } from "react";
 
-export default function List({ activities, isGoodWeather, onDeleteActivity }) {
+export default function List({
+  activities,
+  isGoodWeather,
+  onDeleteActivity,
+  currentPage,
+  totalPages,
+}) {
+  const [highlightedItem, setHighlightedItem] = useState(null);
+
+  useEffect(() => {
+    if (activities.length > 0) {
+      setHighlightedItem(activities[activities.length - 1].id);
+
+      const timeoutId = setTimeout(() => {
+        setHighlightedItem(null);
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [activities]);
+
   return (
     <>
       {activities.length > 0 && (
@@ -14,6 +35,10 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
             <li
               className={`list__item ${
                 activity.isForGoodWeather !== isGoodWeather ? "disabled" : ""
+              } ${
+                activity.id === highlightedItem && currentPage === totalPages
+                  ? "highlight"
+                  : ""
               }`}
               key={activity.id}
             >

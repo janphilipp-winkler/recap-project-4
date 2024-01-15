@@ -1,6 +1,12 @@
 import "./Form.css";
 
-export default function Form({ onAddActivity, checkbox, setCheckbox }) {
+export default function Form({
+  onAddActivity,
+  checkbox,
+  setCheckbox,
+  totalPages,
+  setCurrentPage,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -10,6 +16,8 @@ export default function Form({ onAddActivity, checkbox, setCheckbox }) {
       isForGoodWeather: form.elements.isForGoodWeather.checked,
     };
     onAddActivity(data);
+
+    setCurrentPage(totalPages);
 
     form.reset();
     form.elements.name.focus();
