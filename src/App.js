@@ -4,11 +4,30 @@ import useLocalStorageState from "use-local-storage-state";
 import "./App.css";
 import Form from "./components/Form";
 import List from "./components/List";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [weather, setWeather] = useState(null);
   const [activities, setActivities] = useLocalStorageState("activities", []);
   const [checkbox, setCheckbox] = useLocalStorageState("checkbox", false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const activitiesPerPage = 10;
+
+  const indexOfLastActivity = currentPage * activitiesPerPage;
+  const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
+
+  const currentActivities = activities.slice(
+    indexOfFirstActivity,
+    indexOfLastActivity
+  );
+
+  function nextPage() {
+    setCurrentPage((prevPage) => prevPage + 1);
+  }
+
+  function prevPage() {
+    setCurrentPage((prevPage) => prevPage - 1);
+  }
 
   if (!activities) {
     setActivities([]);
@@ -64,9 +83,17 @@ function App() {
       )}
       <List
         onDeleteActivity={handleDeleteActivity}
-        activities={activities}
+        activities={currentActivities}
         isGoodWeather={weather?.isGoodWeather}
       />
+      {activities.length > activitiesPerPage && (
+        <Pagination
+          currentPage={currentPage}
+          onNextPage={nextPage}
+          onPrevPage={prevPage}
+          totalPages={Math.ceil(activities.length / activitiesPerPage)}
+        />
+      )}
       <Form
         onAddActivity={handleAddActivity}
         checkbox={checkbox}

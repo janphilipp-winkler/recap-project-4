@@ -1,0 +1,33 @@
+.hidden {
+  visibility: hidden;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.pagination__button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--light-grey);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  opacity: 1;
+  width: 3rem;
+}
+
+.pagination__button:hover {
+  opacity: 0.85;
+}
+
+.pagination__count {
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+  padding: 0.25rem 0.5rem;
+}
