@@ -8,6 +8,7 @@ import List from "./components/List";
 function App() {
   const [weather, setWeather] = useState(null);
   const [activities, setActivities] = useLocalStorageState("activities", []);
+  const [checkbox, setCheckbox] = useLocalStorageState("checkbox", false);
 
   if (!activities) {
     setActivities([]);
@@ -66,7 +67,11 @@ function App() {
         activities={filteredActivities}
         isGoodWeather={weather?.isGoodWeather}
       />
-      <Form onAddActivity={handleAddActivity} />
+      <Form
+        onAddActivity={handleAddActivity}
+        checkbox={checkbox}
+        setCheckbox={setCheckbox}
+      />
     </div>
   );
 }

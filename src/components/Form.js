@@ -1,6 +1,6 @@
 import "./Form.css";
 
-export default function Form({ onAddActivity }) {
+export default function Form({ onAddActivity, checkbox, setCheckbox }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -35,6 +35,8 @@ export default function Form({ onAddActivity }) {
           type="checkbox"
           id="isForGoodWeather"
           name="isForGoodWeather"
+          checked={checkbox}
+          onChange={(event) => setCheckbox(event.target.checked)}
         />
         <div className="form__slider"></div>
       </label>
