@@ -48,9 +48,9 @@ function App() {
     setActivities([...activities, { id: uid(), ...newActivity }]);
   }
 
-  const filteredActivities = activities.filter(
-    (activity) => activity.isForGoodWeather === weather?.isGoodWeather
-  );
+  // const filteredActivities = activities.filter(
+  //   (activity) => activity.isForGoodWeather === weather?.isGoodWeather
+  // );
 
   return (
     <div className="app">
@@ -64,7 +64,7 @@ function App() {
       )}
       <List
         onDeleteActivity={handleDeleteActivity}
-        activities={filteredActivities}
+        activities={activities}
         isGoodWeather={weather?.isGoodWeather}
       />
       <Form

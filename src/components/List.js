@@ -11,7 +11,12 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
               : "Bad weather outside! Here`s what you can do now."}
           </h3>
           {activities.map((activity) => (
-            <li className="list__item" key={activity.id}>
+            <li
+              className={`list__item ${
+                activity.isForGoodWeather !== isGoodWeather ? "disabled" : ""
+              }`}
+              key={activity.id}
+            >
               {activity.name}
               <button
                 className="list__item-button"
